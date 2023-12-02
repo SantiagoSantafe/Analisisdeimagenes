@@ -2,9 +2,11 @@ import analyzeImage from './azure-image-analysis';
 import React, { useState } from 'react';
 
 function DisplayResults({ results, imageUrl }) {
+  const captionText = results.description?.captions[0]?.text || "Resultados del análisis de imagen:";
+
   return (
     <div>
-      <h2>Resultados del análisis de imagen:</h2>
+      <h1>{captionText}</h1>
       {imageUrl && <img src={imageUrl} alt="Imagen analizada" />}
       <p>URL de la imagen procesada: {imageUrl}</p>
       <ul>
@@ -44,6 +46,7 @@ function App() {
         {processing ? "Procesando..." : "Analizar imagen"}
       </button>
       <DisplayResults results={results} imageUrl={imageUrl} />
+      <h1>Creado por Santiago Santafe</h1>
     </div>
   );
 }
